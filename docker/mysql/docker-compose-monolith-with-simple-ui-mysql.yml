@@ -20,7 +20,13 @@ services:
   hawkbit-simple-ui:
     image: "hawkbit/hawkbit-simple-ui:latest"
     environment:
-      - 'SPRING_APPLICATION_JSON={"hawkbit.server.mgmtUrl": "http://hawkbit:8080"}'
+      - 'SPRING_APPLICATION_JSON={
+          "hawkbit.server.mgmtUrl": "http://hawkbit:8080",
+          "spring.servlet.multipart.enabled": "true",
+          "spring.servlet.multipart.max-file-size": "1024MB",
+          "spring.servlet.multipart.max-request-size": "1024MB"}'
+      - 'X_MS=2048m'
+      - 'X_MX=2048m'
     restart: always
     ports:
       - 8088:8088
